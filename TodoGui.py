@@ -7,9 +7,12 @@ addButton = SG.Button("Add")
 listBox = SG.Listbox(values=functions.get_todos(), key="todos",
                      enable_events=True, size=[45, 10])
 editButton = SG.Button("Edit")
+completeButton = SG.Button("Complete")
+exitButton = SG.Button("Exit")
 window = SG.Window("My To Do App",
                    layout = [[label], [InputBox,addButton],
-                             [listBox, editButton]],font = ("Arial", 20))
+                             [listBox, editButton, completeButton],
+                             [exitButton]],font = ("Arial", 20))
 while True:
     action, todo = window.read()
     match action:
@@ -26,6 +29,15 @@ while True:
             todolist[todolist.index(todoToEdit)] = newTodo
             functions.write_todos(todolist)
             window["todos"].update(values = todolist)
+        case "Complete":
+            todoCompleted = todo["todos"][0]
+            todolist = functions.get_todos()
+            todolist.remove(todoCompleted)
+            functions.write_todos(todolist)
+            window["todos"].update(values=todolist)
+            window["todo"].update(value = "")
+        case "Exit":
+            break
         case "todos":
             window["todo"].update(value=todo["todos"][0])
         case SG.WIN_CLOSED:

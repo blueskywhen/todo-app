@@ -1,6 +1,6 @@
 hi
 hello world
-do good
-say something
-god knows
+good
 !!
+now
+good god
