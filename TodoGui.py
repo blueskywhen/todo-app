@@ -1,6 +1,11 @@
 import functions
 import FreeSimpleGUI as sg
 import time
+import os
+
+if not os.path.exists('todos.txt'):
+    with open('todos.txt', 'w') as f:
+        pass
 
 sg.theme("LightBlue3")
 clock = sg.Text("", key = "Clock")
